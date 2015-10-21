@@ -32,5 +32,21 @@ class Kernel extends ConsoleKernel
         $schedule->call('App\Link@DecreasePoints')->everyFiveMinutes();
     }
 
+    protected function handle()
+    {
+        try
+        {
+            return parent::handle($request);
+        }
+        catch(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e)
+        {
+            return $this->app->make('Illuminate\Routing\ResponseFactory')->view('error.404', [], 404);
+        }
+        catch (Exception $e)
+        {
+            throw $e;
+        }
+    }
+
     
 }
