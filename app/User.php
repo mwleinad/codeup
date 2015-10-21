@@ -36,4 +36,26 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    //if the user has voted
+    public function hasVoted($relation)
+    {
+        //return $relation->user_id == $this->id && $relation->;
+    }
+
+    public function owns($relation)
+    {
+        return $relation->user_id == $this->id;
+    }
+
+    public function links()
+    {
+        return $this->hasMany(Link::class);
+    }
+
+    public function publish(Link $link)
+    {
+//        var_dump($link);
+        return $this->links()->save($link);
+    }
 }

@@ -148,7 +148,7 @@ return [
         /*other providers*/
         //Way\Generators\GeneratorsServiceProvider::class,
         Laracasts\Commander\CommanderServiceProvider::class,
-
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
     ],
 
     /*
